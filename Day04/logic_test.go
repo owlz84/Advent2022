@@ -1,4 +1,4 @@
-package Day03
+package Day04
 
 import (
 	"fmt"
@@ -7,21 +7,21 @@ import (
 )
 
 func TestBasic(t *testing.T) {
-	result := PrioritySum("example.txt")
-	assert.Equal(t, 157, result)
+	result := FullyContainsCount("example.txt")
+	assert.Equal(t, 2, result)
 }
 
 func TestFull(t *testing.T) {
-	result := PrioritySum("full.txt")
+	result := FullyContainsCount("full.txt")
 	fmt.Println("Part 1 result: ", result)
 }
 
 func TestPart2(t *testing.T) {
-	result := BadgePrioritySum("example.txt")
-	assert.Equal(t, 70, result)
+	result := PartlyContainsCount("example.txt")
+	assert.Equal(t, 4, result)
 }
 
 func TestPart2Full(t *testing.T) {
-	result := BadgePrioritySum("full.txt")
+	result := PartlyContainsCount("full.txt")
 	fmt.Println("Part 2 result: ", result)
 }

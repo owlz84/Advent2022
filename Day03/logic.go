@@ -2,6 +2,7 @@ package Day03
 
 import (
 	"bufio"
+	mapset "github.com/deckarep/golang-set/v2"
 	"os"
 )
 
@@ -54,4 +55,29 @@ func PrioritySum(filename string) int {
 		}
 	}
 	return overlap
+}
+
+func BadgePrioritySum(filename string) int {
+	fileLines := ReadFile(filename)
+	prioritySum := 0
+	for i := 0; i < len(fileLines)/3; i++ {
+		offset := i * 3
+		var (
+			e1 = mapset.NewSet[string]()
+			e2 = mapset.NewSet[string]()
+			e3 = mapset.NewSet[string]()
+		)
+		for i := 0; i < len(fileLines[offset]); i++ {
+			e1.Add(string(fileLines[offset][i]))
+		}
+		for i := 0; i < len(fileLines[offset+1]); i++ {
+			e2.Add(string(fileLines[offset+1][i]))
+		}
+		for i := 0; i < len(fileLines[offset+2]); i++ {
+			e3.Add(string(fileLines[offset+2][i]))
+		}
+		common, _ := e1.Intersect(e2.Intersect(e3)).Pop()
+		prioritySum += RuneToAscii(rune(common[0]))
+	}
+	return prioritySum
 }
